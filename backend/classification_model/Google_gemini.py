@@ -15,7 +15,10 @@ GOOGLE_API_KEY = "AIzaSyCnzKY6McxENFeJDwfrODSXq49GNc9ji_w"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 
+
+
 # 定義圖片所在路徑
+
 url = f"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={GOOGLE_API_KEY}"
 
 
