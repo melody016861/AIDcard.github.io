@@ -1,47 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Gemini Classification</title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Gemini_Predict</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
     <style>
         .gradient-bg {
             background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <header class="gradient-bg text-white p-6 shadow-lg">
-        <h1 class="text-3xl font-bold text-center">Google Gemini Classification</h1>
+
+<body>
+    <h2>Gemini_Predict</h2>
+    <ul id="Gemini_Predict"></ul>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preload-content">
+            <div id="original-load"></div>
+        </div>
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div class="subscribe-newsletter-area">
+        <div class="modal fade" id="subsModal" tabindex="-1" role="dialog" aria-labelledby="subsModal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="modal-body">
+                        <h5 class="title">Subscribe to my newsletter</h5>
+                        <form action="#" class="newsletterForm" method="post">
+                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
+                            <button type="submit" class="btn original-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Breaking News Area -->
+                    <div class="col-12 col-sm-8">
+                        <div class="breaking-news-area">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a href="#">Hello World!</a></li>
+                                    <li><a href="#">Hello Universe!</a></li>
+                                    <li><a href="#">Hello Green!</a></li>
+                                    <li><a href="#">Hello Earth!</a></li>
+                                    <li><a href="#">Hello NCCUTrash!</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Social Area -->
+                    <div class="col-12 col-sm-4">
+                        <div class="top-social-area">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i
+                                    class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i
+                                    class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i
+                                    class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i
+                                    class="fa fa-dribbble" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i
+                                    class="fa fa-behance" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
+                                    class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo Area -->
+        <div class="logo-area text-center">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo.png"
+                                alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav Area -->
+        <div class="original-nav-area" id="stickyNav">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between">
+
+                        <!-- Subscribe btn -->
+                        <div class="subscribe-btn">
+                            <a href="#" class="btn subscribe-btn" data-toggle="modal"
+                                data-target="#subsModal">Subscribe</a>
+                        </div>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu" id="originalNav">
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="index_new.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index_new.html">Home</a></li>
+                                            <li id="registerNav"><a href="register.html">Register</a></li>
+                                            <li id="loginNav"><a href="login.html">Login</a></li>
+                                            <li id="leaderboardNav"><a href="leaderboard.html">Leaderboard</a></li>
+                                            <li id="achievementsNav"><a href="achievements.html">Achievements</a>
+                                            </li>
+                                            <li id="quizNav"><a href="quiz.html">Take a Quiz</a></li>
+                                            <li><a href="image_predict.html">Image Predict</a></li>
+                                            <li><a href="Gemini_connect.html">Gemini_predict</a></li>
+                                            <li><a href="page_2.html">Page2</a></li>
+                                            <li><a href="page_example.html">page example</a></li>
+                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">quizAnalytics</a>
+                                            </li>
+                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="single-post.html">Single Post</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Catagory</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Catagory 1</a></li>
+                                            <li><a href="#">Catagory 1</a></li>
+                                            <li><a href="#">Catagory 1</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Catagory 2</a></li>
+                                                    <li><a href="#">Catagory 2</a></li>
+                                                    <li><a href="#">Catagory 2</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Catagory 3</a></li>
+                                                            <li><a href="#">Catagory 3</a></li>
+                                                            <li><a href="#">Catagory 3</a></li>
+                                                            <li><a href="#">Catagory 3</a></li>
+                                                            <li><a href="#">Catagory 3</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Catagory 2</a></li>
+                                                    <li><a href="#">Catagory 2</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Catagory 1</a></li>
+                                            <li><a href="#">Catagory 1</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="#">Megamenu</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 1</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 2</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 3</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Headline 4</li>
+                                                <li><a href="#">Mega Menu Item 1</a></li>
+                                                <li><a href="#">Mega Menu Item 2</a></li>
+                                                <li><a href="#">Mega Menu Item 3</a></li>
+                                                <li><a href="#">Mega Menu Item 4</a></li>
+                                                <li><a href="#">Mega Menu Item 5</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Search Form  -->
+                                <div id="search-wrapper">
+                                    <form action="#">
+                                        <input type="text" id="search" placeholder="Search something...">
+                                        <div id="close-icon"></div>
+                                        <input class="d-none" type="submit" value="">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </header>
+    <!-- ##### Header Area End ##### -->
 
+    <!-- ##### Main Content Start ##### -->
     <main class="container mx-auto mt-8 p-4">
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Upload an Image for Prediction</h2>
-            <div class="flex items-center space-x-4">
-                <input type="file" id="uploadImageInput" accept="image/*" class="border p-2 rounded">
-                <button id="uploadButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Upload Image</button>
-            </div>
-        </section>
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Left side: Image upload and results -->
+            <div class="w-full md:w-1/2">
+                <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-semibold mb-4">Upload an Image for Prediction</h2>
+                    <div class="flex items-center space-x-4">
+                        <input type="file" id="uploadImageInput" accept="image/*" class="border p-2 rounded">
+                        <button id="uploadButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Upload Image</button>
+                    </div>
+                </section>
 
-        <section class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-2xl font-semibold mb-4">Latest Prediction Results</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <h3 class="text-xl font-medium mb-2">Uploaded Image:</h3>
-                    <img id="uploadedImage" src="" alt="No image uploaded yet" class="max-w-full h-auto rounded-lg border">
-                </div>
-                <div>
-                    <h3 class="text-xl font-medium mb-2">Classification Result:</h3>
-                    <p id="classificationResult" class="text-lg bg-gray-100 p-4 rounded-lg">Waiting for classification...</p>
-                    <p id="statusMessage" class="mt-4 text-sm text-gray-600">Waiting for upload...</p>
+                <section class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-semibold mb-4">Latest Prediction Results</h2>
+                    <div class="flex flex-col">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-medium mb-2">Uploaded Image:</h3>
+                            <img id="uploadedImage" src="" alt="No image uploaded yet" class="max-w-full h-auto rounded-lg border">
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-medium mb-2">Classification Result:</h3>
+                            <div id="classificationResult" class="text-lg bg-gray-100 p-4 rounded-lg whitespace-pre-line">Waiting for classification...</div>
+                            <p id="statusMessage" class="mt-4 text-sm text-gray-600">Waiting for upload...</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Right side: Empty for now -->
+            <div class="w-full md:w-1/2">
+            </div>
+        </div>
+    </main>
+    <!-- ##### Main Content End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Footer Nav Area -->
+                    <div class="classy-nav-container breakpoint-off">
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar justify-content-center">
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+
+                                <!-- close btn -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Lifestyle</a></li>
+                                        <li><a href="#">travel</a></li>
+                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Nav End -->
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!-- Footer Social Area -->
+                    <div class="footer-social-area mt-30">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i
+                                class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i
+                                class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i
+                                class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance"
+                                aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i
+                                class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
+        <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
+    <!-- Tailwind Scripts (如果有需要) -->
+    <script src="js/scripts.js"></script>
 
     <script>
+        // 圖片上傳按鈕事件
         document.getElementById('uploadButton').addEventListener('click', function() {
             const fileInput = document.getElementById('uploadImageInput');
             const file = fileInput.files[0];
@@ -56,7 +380,7 @@
 
             document.getElementById('statusMessage').innerText = 'Uploading...';
 
-            fetch('http://127.0.0.1:8080/post_from_upload', {
+            fetch('http://127.0.0.1:8080/post_from_upload', { // 替換為你的伺服器端點
                 method: 'POST',
                 body: formData
             })
@@ -68,10 +392,12 @@
                 }
             })
             .then(data => {
+                // 顯示圖片
                 const imgUrl = "data:image/jpeg;base64," + data.image_data;
                 document.getElementById('uploadedImage').src = imgUrl;
 
-                const classificationText = `Gemini Classification: ${data.classification_with_retry}`;
+                // 顯示分類結果
+                const classificationText = `Gemini Classification: ${data.classification_with_retry.toLowerCase()}`;
                 document.getElementById('classificationResult').innerText = classificationText;
 
                 document.getElementById('statusMessage').innerText = 'Image successfully uploaded and classified';
@@ -82,24 +408,27 @@
             });
         });
 
+        // 檢查新圖片的函數
         function checkForNewImage() {
             document.getElementById('statusMessage').innerText = "Fetching data...";
 
-            fetch('http://127.0.0.1:8080/check-new-image')
+            fetch('http://127.0.0.1:8080/check-new-image') // 替換為你的伺服器IP
                 .then(response => {
                     if (response.ok) {
                         console.log('Response received:', response);
                         document.getElementById('statusMessage').innerText = "Response received";
-                        return response.json();
+                        return response.json(); // 將 response 轉換為 JSON
                     } else {
                         throw new Error('Network response was not ok');
                     }
                 })
                 .then(data => {
+                    // 解碼 Base64 圖片並顯示
                     const imgUrl = "data:image/jpeg;base64," + data.image_data;
                     document.getElementById('uploadedImage').src = imgUrl;
 
-                    const classificationText = `Google Gemini Outcome: ${data.google_classification}\nCNN Outcome: ${data.class_name}`;
+                    // 顯示分類結果
+                    const classificationText = `Google Gemini Outcome:\n${data.google_classification.toLowerCase()}\n\nCNN Outcome:\n${data.class_name.toLowerCase()}`;
                     document.getElementById('classificationResult').innerText = classificationText;
 
                     document.getElementById('statusMessage').innerText = 'Successfully received new image and classification results';
@@ -110,8 +439,13 @@
                 });
         }
 
+        // 每隔5秒檢查一次是否有新圖片
         setInterval(checkForNewImage, 5000);
+
+        // 初始載入時檢查一次
         checkForNewImage();
     </script>
+
 </body>
+
 </html>

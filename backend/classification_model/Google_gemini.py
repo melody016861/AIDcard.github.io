@@ -11,14 +11,16 @@ load_dotenv()
 # 將 API 鍵設置為變數
 GOOGLE_API_KEY = "AIzaSyCnzKY6McxENFeJDwfrODSXq49GNc9ji_w"
 
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
+genai.configure(api_key=GOOGLE_API_KEY)
 
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+
 
 # 定義圖片所在路徑
-dir_path = r"C:\test\Google_Gemini_API\dataset-resized\trash"
+
 url = f"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={GOOGLE_API_KEY}"
+
 
 
 # 定義分類函數
@@ -32,13 +34,7 @@ def classification(img_path):
             "contents": [
             {
                 "parts": [
-                    {"text": """ Glass: Items made from glass, including bottles, jars, and containers. These are typically clear, green, or brown and can be recycled to create new glass products.
-                            Metal: Items made from metals such as aluminum, steel, and tin. This includes cans, foil, and certain metal containers. These can be recycled to produce new metal materials.
-                            Paper: Items made from paper, including newspapers, magazines, office paper, and cardboard (if it’s clean and not greasy). Paper products are often recycled into new paper products.
-                            Cardboard:A specific type of paper that is thicker and stronger, typically used for packaging and boxes. Cardboard can be recycled to make new cardboard products or paper products.
-                            Plastic:Items made from plastic, such as bottles, containers, and packaging. Plastics are often labeled with numbers that indicate the type of plastic, and different types are recycled in different ways.
-                            Trash:Items that do not fall into any of the recyclable categories, including food waste, dirty or greasy paper, certain plastics, and mixed materials that cannot be easily separated.Trash is generally sent to landfills or incinerated.
-                            Here are the definitions for the six recycling categories.Which category does this image belong to: glass, metal, paper, cardboard, plastic, or trash ? 
+                    {"text": """Which category does this image belong to: glass, metal, paper, cardboard, plastic, or trash ? 
                             Please directly output one of these categories without any other words, and must choose one closest to definitions.If the image cannot be recognized, it will be classified as trash."""},
                     {
                         "inline_data": {
