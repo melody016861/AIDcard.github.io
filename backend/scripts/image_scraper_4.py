@@ -107,8 +107,8 @@ def main():
         "metal waste plain background",
         "metal recycling isolated"
     ]
-    max_images = 40  # 每個標籤抓取的最大圖片數
-    folder_path = "金屬_images_2"
+    max_images = 1000  # 每個標籤抓取的最大圖片數
+    folder_path = "金屬_images_3"
     start_index = 1  # 初始化開始的索引
 
     for label in labels:

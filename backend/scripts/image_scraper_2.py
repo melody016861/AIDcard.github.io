@@ -103,8 +103,8 @@ def main():
         "recyclable glass packaging",
         "recyclable glass materials"
     ]
-    max_images = 200  # 每個標籤抓取的最大圖片數
-    folder_path = "玻璃_images_1"
+    max_images = 1000  # 每個標籤抓取的最大圖片數
+    folder_path = "玻璃_images_2"
     start_index = 1  # 初始化開始的索引
 
     for label in labels:

@@ -16,7 +16,7 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">
-
+    <!-- 
     <style>
         /* 基本按鈕樣式 */
         button {
@@ -77,7 +77,7 @@
             background-color: #f44336;
             /* 紅色背景 */
         }
-    </style>
+    </style> -->
 
 </head>
 
@@ -99,8 +99,9 @@
                             aria-hidden="true">&times;</span></button>
                     <div class="modal-body">
                         <h5 class="title">Subscribe to my newsletter</h5>
-                        <form action="#" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
+                        <form id="newsletterForm" class="newsletterForm" method="post">
+                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here"
+                                required>
                             <button type="submit" class="btn original-btn">Subscribe</button>
                         </form>
                     </div>
@@ -156,7 +157,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo.png"
+                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo1.jpg"
                                 alt="回收教育"></a>
                     </div>
                 </div>
@@ -192,34 +193,38 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index_new.html">Home</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index_new.html">Home</a></li>
-                                            <li id="registerNav"><a href="register.html">Register</a></li>
-                                            <li id="loginNav"><a href="login.html">Login</a></li>
-                                            <li><a href="image_predict.html">Image Predict</a></li>
-                                            <li><a href="page_2.html">Page2</a></li>
-                                            <li><a href="page_example.html">page example</a></li>
-                                            <li id="leaderboardNav"><a href="leaderboard.html">Leaderboard</a></li>
-                                            <li id="achievementsNav"><a href="achievements.html">Achievements</a></li>
-                                            <li id="quizNav"><a href="quiz.html">Take a Quiz</a></li>
-                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">quizAnalytics</a>
-                                            </li>
-                                            <li id="LotteryNav"><a href="lottery.html">Lottery</a></li>
-                                            <li id="recycling_diaryNav"><a href="recycling_diary.html">Recycling
-                                                    Diary</a></li>
-                                            <li id="arduinoNav"><a href="arduino.html">Arduino</a></li>
-                                            <li id="educationNav"><a href="education.html">Education</a></li>
-                                            <li id="GeminiNav"><a href="Gemini_connect.html">Gemini_connect</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                                            <li id="feedbackNav"><a href="feedback.html">Feedback</a></li>
 
+                                    <li id="authNav">
+                                        <a href="#">Log in/out</a>
+                                        <ul class="dropdown">
+                                            <li id="registerNav" style="display:none;"><a href="register.html">註冊</a>
+                                            </li>
+                                            <li id="loginNav" style="display:none;"><a href="login.html">登入</a></li>
+                                            <li id="logoutNav" style="display:none;"><a href="#"
+                                                    onclick="logout()">登出</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="image_predict.html">圖片預測</a></li>
+                                            <li id="leaderboardNav"><a href="leaderboard.html">積分排行榜</a></li>
+                                            <li id="quizNav"><a href="quiz.html">測試一下!</a></li>
+                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">測驗分析</a>
+                                            </li>
+                                            <li id="LotteryNav"><a href="lottery.html">抽獎</a></li>
+                                            <li id="recycling_diaryNav"><a href="recycling_diary.html">回收日記</a></li>
+                                            <li id="arduinoNav"><a href="arduino.html">Arduino</a></li>
+                                            <li id="educationNav"><a href="education.html">教育宣導</a></li>
+                                            <li id="GeminiNav"><a href="Gemini_connect.html">Gemini 圖片預測</a></li>
+                                            <li><a href="single-post.html">Single Post</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="about-us.html">關於我們</a></li>
+                                    <li><a href="contact.html">聯繫我們</a></li>
+                                    <li><a href="feedback.html">顧客反饋</a></li>
+                                    <!-- <li><a href="#">Catagory</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
@@ -243,9 +248,9 @@
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="#">Megamenu</a>
+                                    </li> -->
+
+                                    <!-- <li><a href="#">Megamenu</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
                                                 <li class="title">Headline 1</li>
@@ -280,8 +285,7 @@
                                                 <li><a href="#">Mega Menu Item 5</a></li>
                                             </ul>
                                         </div>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    </li> -->
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -302,7 +306,7 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <main>
+    <!-- <main>
         <h1>Welcome home</h1>
         <button id="registerBtn" style="display:none;" onclick="window.location.href='register.html';">註冊</button>
         <button id="loginBtn" style="display:none;" onclick="window.location.href='login.html';">登入</button>
@@ -318,10 +322,10 @@
             <button onclick="window.location.href='quizAnalytics.html';">quizAnalytics</button>
             <button onclick="window.location.href='Gemini_connect.html';">Gemini_connect</button>
             <button onclick="window.location.href='lottery.html';">Lottery</button>
-            <button onclick="window.location.href='recycling_diary.html';">Recycling Diary</button>
-            <!-- Other logged-in user-specific features -->
+            <button onclick="window.location.href='recycling_diary.html';">Recycling Diary</button> -->
+    <!-- Other logged-in user-specific features
         </div>
-    </main>
+    </main> -->
 
     <!-- ##### Hero Area Start ##### -->
     <div class="hero-area">
@@ -884,6 +888,40 @@
     <script src="js/active.js"></script>
 
     <script src="js/scripts.js"></script>
+
+    <script>
+        // 防止表單重新加載頁面並處理表單提交
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            e.preventDefault();  // 防止表單提交導致頁面重新加載
+        
+            const email = document.getElementById('subscribesForm2').value;
+        
+            if (email) {
+                // 使用 fetch 發送 POST 請求到 Flask 伺服器
+                fetch('/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email }),  // 將 email 轉換為 JSON 格式發送
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert('Subscribed successfully!');
+                    } else {
+                        alert('Subscription failed: ' + data.error);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Subscription failed. Please try again.');
+                });
+            } else {
+                alert('Please enter a valid email.');
+            }
+        });        
+    </script>
 
 </body>
 

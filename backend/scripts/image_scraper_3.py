@@ -102,8 +102,8 @@ def main():
         "used cardboard boxes",
         "cardboard packaging"
     ]
-    max_images = 40  # 每個標籤抓取的最大圖片數
-    folder_path = "紙板_images_1"
+    max_images = 1000  # 每個標籤抓取的最大圖片數
+    folder_path = "紙板_images_2"
     start_index = 1  # 初始化開始的索引
 
     for label in labels:

@@ -53,6 +53,18 @@ def classify_image_endpoint():
             return jsonify({"error": "Internal server error occurred"}), 500
     else:
         return jsonify({"error": "Invalid file type"}), 400
+    
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    data = request.get_json()  # 接收 JSON 資料
+    email = data.get('email') if data else None  # 確保有收到資料
+    
+    if email:
+        # 處理訂閱邏輯 (可以將 email 儲存到資料庫中或其他操作)
+        return jsonify({'message': 'Subscription successful'}), 200
+    else:
+        return jsonify({'error': 'Email is required'}), 400
+
 
 if __name__ == '__main__':
     app.run(port=5000)

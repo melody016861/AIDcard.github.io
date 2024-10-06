@@ -146,8 +146,8 @@ def main():
         "recyclable book paper",
         "recyclable packaging paper"
     ]
-    max_images = 30
-    folder_path = "紙類_images_2"
+    max_images = 1000
+    folder_path = "紙類_images_3"
     start_index = 1  # 初始化開始的索引
 
     for label in labels:

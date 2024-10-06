@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const loginNav = document.getElementById('loginNav');
     const registerNav = document.getElementById('registerNav');
+    const logoutNav = document.getElementById('logoutNav');
     const leaderboardNav = document.getElementById('leaderboardNav');
     const achievementsNav = document.getElementById('achievementsNav');
     const quizNav = document.getElementById('quizNav');
@@ -41,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (loginNav) loginNav.style.display = 'none'; // 隱藏登入連結
         if (registerNav) registerNav.style.display = 'none'; // 隱藏註冊連結
+        if (logoutNav) logoutNav.style.display = 'block'; // 隱藏登入連結
+        authNav.querySelector('a').textContent = 'Log out';
+
         if (leaderboardNav) leaderboardNav.style.display = 'block'; // 顯示排行榜連結
         if (achievementsNav) achievementsNav.style.display = 'block'; // 顯示成就連結
         if (quizNav) quizNav.style.display = 'block'; // 顯示成就連結
@@ -61,6 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (loginNav) loginNav.style.display = 'block'; // 顯示登入連結
         if (registerNav) registerNav.style.display = 'block'; // 顯示註冊連結
+        if (logoutNav) logoutNav.style.display = 'none'; // 隱藏登入連結
+        authNav.querySelector('a').textContent = 'Register/Log in';
+
         if (leaderboardNav) leaderboardNav.style.display = 'none'; // 隱藏排行榜連結
         if (achievementsNav) achievementsNav.style.display = 'none'; // 隱藏成就連結
         if (quizNav) quizNav.style.display = 'none'; // 顯示成就連結

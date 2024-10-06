@@ -96,7 +96,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo.png"
+                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo1.jpg"
                                 alt=""></a>
                     </div>
                 </div>
@@ -132,27 +132,36 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index_new.html">Home</a></li>
+
+                                    <li id="authNav">
+                                        <a href="#">Log in/out</a>
+                                        <ul class="dropdown">
+                                            <li id="registerNav" style="display:none;"><a href="register.html">註冊</a>
+                                            </li>
+                                            <li id="loginNav" style="display:none;"><a href="login.html">登入</a></li>
+                                            <li id="logoutNav" style="display:none;"><a href="#"
+                                                    onclick="logout()">登出</a></li>
+                                        </ul>
+                                    </li>
+
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index_new.html">Home</a></li>
-                                            <li id="registerNav"><a href="register.html">Register</a></li>
-                                            <li id="loginNav"><a href="login.html">Login</a></li>
-                                            <li id="leaderboardNav"><a href="leaderboard.html">Leaderboard</a></li>
-                                            <li id="achievementsNav"><a href="achievements.html">Achievements</a></li>
-                                            <li id="quizNav"><a href="quiz.html">Take a Quiz</a></li>
-                                            <li><a href="image_predict.html">Image Predict</a></li>
-                                            <li><a href="page_2.html">Page2</a></li>
-                                            <li><a href="page_example.html">page example</a></li>
-                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">quizAnalytics</a>
+                                            <li><a href="image_predict.html">圖片預測</a></li>
+                                            <li id="leaderboardNav"><a href="leaderboard.html">積分排行榜</a></li>
+                                            <li id="quizNav"><a href="quiz.html">測試一下!</a></li>
+                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">測驗分析</a>
                                             </li>
-                                            <li id="GeminiNav"><a href="Gemini_connect.html">Gemini_connect</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li id="LotteryNav"><a href="lottery.html">抽獎</a></li>
+                                            <li><a href="page_2.html">page 2</a></li>
+                                            <li id="recycling_diaryNav"><a href="recycling_diary.html">回收日記</a></li>
+                                            <li id="arduinoNav"><a href="arduino.html">Arduino</a></li>
+                                            <li id="educationNav"><a href="education.html">教育宣導</a></li>
+                                            <li id="GeminiNav"><a href="Gemini_connect.html">Gemini 圖片預測</a></li>
                                             <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
                                             <li><a href="coming-soon.html">Coming Soon</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <!-- <li><a href="#">Catagory</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
@@ -176,9 +185,9 @@
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="#">Megamenu</a>
+                                    </li> -->
+                                    <li><a href="about-us.html">關於我們</a></li>
+                                    <!-- <li><a href="#">Megamenu</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
                                                 <li class="title">Headline 1</li>
@@ -213,8 +222,9 @@
                                                 <li><a href="#">Mega Menu Item 5</a></li>
                                             </ul>
                                         </div>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    </li> -->
+                                    <li><a href="contact.html">聯繫我們</a></li>
+                                    <li id="feedbackNav"><a href="feedback.html">顧客反饋</a></li>
                                 </ul>
 
                                 <!-- Search Form  -->
