@@ -19,8 +19,6 @@
 </head>
 
 <body>
-    <h2>積分排行榜</h2>
-    <ul id="leaderboard"></ul>
 
     <!-- Preloader -->
     <div id="preloader">
@@ -242,6 +240,8 @@
                 </div>
             </div>
         </div>
+        <h2>積分排行榜</h2>
+        <ul id="leaderboard"></ul>
     </header>
     <!-- ##### Header Area End ##### -->
 
@@ -275,9 +275,9 @@
                                     <ul>
                                         <li><a href="#">Home</a></li>
                                         <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">education</a></li>
+                                        <li><a href="#">NCCUTrash</a></li>
+                                        <li><a href="#">Image Predict</a></li>
                                         <li><a href="#">Contact</a></li>
                                     </ul>
                                 </div>
@@ -327,19 +327,35 @@
 
     <script src="js/scripts.js"></script>
 
+
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
-            const response = await fetch('/leaderboard');
-            const leaderboard = await response.json();
-            const leaderboardList = document.getElementById('leaderboard');
-
-            leaderboard.forEach(user => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${user.username} - ${user.points} 分`;
-                leaderboardList.appendChild(listItem);
-            });
+            try {
+                const response = await fetch('/leaderboard');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch leaderboard');
+                }
+                
+                const leaderboard = await response.json();
+                const leaderboardList = document.getElementById('leaderboard');
+                
+                // 清除現有的排行榜
+                leaderboardList.innerHTML = '';
+                
+                // 使用新資料填充排行榜
+                leaderboard.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${user.username} - ${user.points} 分`;
+                    leaderboardList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error loading leaderboard:', error);
+                alert('載入排行榜失敗。請稍後再試。');
+            }
         });
+        
     </script>
+
 </body>
 
 </html>

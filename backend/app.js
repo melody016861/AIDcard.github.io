@@ -269,6 +269,22 @@ function authenticateToken(req, res, next) {
     }
 }
 
+const multer = require('multer');
+
+// 配置 multer 用於圖片上傳
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // 指定文件保存的文件夾
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // 使用當前時間戳作為文件名
+    }
+});
+
+const upload = multer({ storage: storage });
+
+app.use('/uploads', express.static('uploads'));
+
 // 回收日記路由
 app.post('/api/recycling-diary', authMiddleware, async (req, res) => {
     try {
@@ -280,6 +296,7 @@ app.post('/api/recycling-diary', authMiddleware, async (req, res) => {
             userId,
             title,
             content,
+            image: req.file ? req.file.path : null,  // 如果有圖片則存儲路徑
             date: date || new Date()
         });
 

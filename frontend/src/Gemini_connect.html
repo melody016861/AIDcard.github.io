@@ -105,7 +105,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo.png"
+                        <a href="index_new.html" class="original-logo"><img src="assets/img/core-img/logo1.jpg"
                                 alt=""></a>
                     </div>
                 </div>
@@ -141,28 +141,38 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index_new.html">Home</a></li>
+
+                                    <li id="authNav">
+                                        <a href="#">Log in/out</a>
+                                        <ul class="dropdown">
+                                            <li id="registerNav" style="display:none;"><a href="register.html">註冊</a>
+                                            </li>
+                                            <li id="loginNav" style="display:none;"><a href="login.html">登入</a></li>
+                                            <li id="logoutNav" style="display:none;"><a href="#"
+                                                    onclick="logout()">登出</a></li>
+                                        </ul>
+                                    </li>
+
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index_new.html">Home</a></li>
-                                            <li id="registerNav"><a href="register.html">Register</a></li>
-                                            <li id="loginNav"><a href="login.html">Login</a></li>
-                                            <li id="leaderboardNav"><a href="leaderboard.html">Leaderboard</a></li>
-                                            <li id="achievementsNav"><a href="achievements.html">Achievements</a>
+                                            <li><a href="image_predict.html">圖片預測</a></li>
+                                            <li id="leaderboardNav"><a href="leaderboard.html">積分排行榜</a></li>
+                                            <li id="quizNav"><a href="quiz.html">測試一下!</a></li>
+                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">測驗分析</a>
                                             </li>
-                                            <li id="quizNav"><a href="quiz.html">Take a Quiz</a></li>
-                                            <li><a href="image_predict.html">Image Predict</a></li>
-                                            <li><a href="Gemini_connect.html">Gemini_predict</a></li>
-                                            <li><a href="page_2.html">Page2</a></li>
-                                            <li><a href="page_example.html">page example</a></li>
-                                            <li id="quizAnalyticsNav"><a href="quizAnalytics.html">quizAnalytics</a>
-                                            </li>
-                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li id="LotteryNav"><a href="lottery.html">抽獎</a></li>
+                                            <li id="recycling_diaryNav"><a href="recycling_diary.html">回收日記</a></li>
+                                            <li id="arduinoNav"><a href="arduino.html">Arduino</a></li>
+                                            <li id="educationNav"><a href="education.html">教育宣導</a></li>
+                                            <li id="GeminiNav"><a href="Gemini_connect.html">Gemini 圖片預測</a></li>
                                             <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
                                             <li><a href="coming-soon.html">Coming Soon</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Catagory</a>
+                                    <li><a href="about-us.html">關於我們</a></li>
+                                    <li><a href="contact.html">聯繫我們</a></li>
+                                    <li><a href="feedback.html">顧客反饋</a></li>
+                                    <!-- <li><a href="#">Catagory</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
@@ -186,9 +196,9 @@
                                             <li><a href="#">Catagory 1</a></li>
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="#">Megamenu</a>
+                                    </li> -->
+
+                                    <!-- <li><a href="#">Megamenu</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
                                                 <li class="title">Headline 1</li>
@@ -223,8 +233,7 @@
                                                 <li><a href="#">Mega Menu Item 5</a></li>
                                             </ul>
                                         </div>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    </li> -->
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -254,7 +263,9 @@
                     <h2 class="text-2xl font-semibold mb-4">Upload an Image for Prediction</h2>
                     <div class="flex items-center space-x-4">
                         <input type="file" id="uploadImageInput" accept="image/*" class="border p-2 rounded">
-                        <button id="uploadButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Upload Image</button>
+                        <button id="uploadButton"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Upload
+                            Image</button>
                     </div>
                 </section>
 
@@ -263,17 +274,20 @@
                     <div class="flex flex-col">
                         <div class="mb-4">
                             <h3 class="text-xl font-medium mb-2">Uploaded Image:</h3>
-                            <img id="uploadedImage" src="" alt="No image uploaded yet" class="max-w-full h-auto rounded-lg border">
+                            <img id="uploadedImage" src="" alt="No image uploaded yet"
+                                class="max-w-full h-auto rounded-lg border">
                         </div>
                         <div class="mt-4">
                             <h3 class="text-xl font-medium mb-2">Classification Result:</h3>
-                            <div id="classificationResult" class="text-lg bg-gray-100 p-4 rounded-lg whitespace-pre-line">Waiting for classification...</div>
+                            <div id="classificationResult"
+                                class="text-lg bg-gray-100 p-4 rounded-lg whitespace-pre-line">Waiting for
+                                classification...</div>
                             <p id="statusMessage" class="mt-4 text-sm text-gray-600">Waiting for upload...</p>
                         </div>
                     </div>
                 </section>
             </div>
-            
+
             <!-- Right side: Empty for now -->
             <div class="w-full md:w-1/2">
             </div>
@@ -311,9 +325,9 @@
                                     <ul>
                                         <li><a href="#">Home</a></li>
                                         <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Lifestyle</a></li>
-                                        <li><a href="#">travel</a></li>
-                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">education</a></li>
+                                        <li><a href="#">NCCUTrash</a></li>
+                                        <li><a href="#">Image Predict</a></li>
                                         <li><a href="#">Contact</a></li>
                                     </ul>
                                 </div>
@@ -366,7 +380,7 @@
 
     <script>
         // 圖片上傳按鈕事件
-        document.getElementById('uploadButton').addEventListener('click', function() {
+        document.getElementById('uploadButton').addEventListener('click', function () {
             const fileInput = document.getElementById('uploadImageInput');
             const file = fileInput.files[0];
 
@@ -384,28 +398,28 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Upload failed');
-                }
-            })
-            .then(data => {
-                // 顯示圖片
-                const imgUrl = "data:image/jpeg;base64," + data.image_data;
-                document.getElementById('uploadedImage').src = imgUrl;
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Upload failed');
+                    }
+                })
+                .then(data => {
+                    // 顯示圖片
+                    const imgUrl = "data:image/jpeg;base64," + data.image_data;
+                    document.getElementById('uploadedImage').src = imgUrl;
 
-                // 顯示分類結果
-                const classificationText = `Gemini Classification: ${data.classification_with_retry.toLowerCase()}`;
-                document.getElementById('classificationResult').innerText = classificationText;
+                    // 顯示分類結果
+                    const classificationText = `Gemini Classification: ${data.classification_with_retry.toLowerCase()}`;
+                    document.getElementById('classificationResult').innerText = classificationText;
 
-                document.getElementById('statusMessage').innerText = 'Image successfully uploaded and classified';
-            })
-            .catch(error => {
-                console.log('Error:', error);
-                document.getElementById('statusMessage').innerText = 'Error: ' + error.message;
-            });
+                    document.getElementById('statusMessage').innerText = 'Image successfully uploaded and classified';
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                    document.getElementById('statusMessage').innerText = 'Error: ' + error.message;
+                });
         });
 
         // 檢查新圖片的函數

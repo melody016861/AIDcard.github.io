@@ -124,42 +124,46 @@ document.addEventListener('DOMContentLoaded', function () {
     // 回收日記功能代碼
     const diaryForm = document.getElementById('diaryForm');
     if (diaryForm) {
+        const diaryTitle = document.getElementById('diaryTitle');
         const diaryEntry = document.getElementById('diaryEntry');
-        const diaryImage = document.getElementById('diaryImage');
         const message = document.getElementById('message');
         const diaryList = document.getElementById('diaryList');
+        const diaryImageInput = document.getElementById('diaryImage');  // 初始化圖片文件輸入
 
         diaryForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const entryTitle = document.getElementById('diaryTitle').value.trim();
+            const entryTitle = diaryTitle.value.trim();
             const entryText = diaryEntry.value.trim();
+            const diaryImage = diaryImageInput.files[0];  // 獲取圖片文件
+
             if (!entryText) {
                 message.textContent = "請填寫日記內容！";
                 return;
             }
 
+            // 使用 FormData 構建數據
             const formData = new FormData();
-            formData.append('title', entryTitle); // 如果沒有 title 可以將其設置為空字串
-            formData.append('entry', entryText);
-            if (diaryImage.files[0]) {
-                formData.append('image', diaryImage.files[0]);
+            formData.append('title', entryTitle || '無標題');
+            formData.append('content', entryText);
+            if (diaryImage) {
+                formData.append('image', diaryImage);  // 將圖片文件添加到表單數據中
             }
 
-            const token = localStorage.getItem('token');
-
+            const token = localStorage.getItem('token'); // 確保在這裡獲取到 token
             if (!token) {
-                message.textContent = "未能獲取授權令牌，請重新登入。";
+                message.textContent = "未找到授權令牌，請重新登錄。";
                 return;
             }
 
             try {
                 const response = await fetch('/api/recycling-diary', {
                     method: 'POST',
+                    body: formData,  // 使用 FormData 而非 JSON.stringify
                     headers: {
                         'Authorization': `Bearer ${token}`
-                    },
-                    body: formData
+                        // 注意：不要設置 'Content-Type'，因為 FormData 會自動處理邊界和內容類型
+                    }
                 });
 
                 if (!response.ok) {
@@ -168,15 +172,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 const result = await response.json();
-                console.log("伺服器回應結果:", result);
+                console.log('Server response:', result);
 
                 message.textContent = "日記提交成功！";
                 loadDiary();
-                diaryEntry.value = '';
-                if (diaryTitle) diaryTitle.value = ''; // 清空標題欄
-                diaryImage.value = '';
+                diaryTitle.value = ''; // 清空標題
+                diaryEntry.value = ''; // 清空內容
+                diaryImageInput.value = '';  // 清空圖片輸入框
 
             } catch (error) {
+                console.error('Error:', error);
                 message.textContent = `提交失敗: ${error.message}`;
             }
         });
@@ -191,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const response = await fetch('/api/recycling-diary', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`, // 添加 token 到請求標頭
+                        'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 });
@@ -211,10 +216,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 diaries.forEach(diary => {
                     const listItem = document.createElement('li');
                     listItem.innerHTML = `
-                        <p>${new Date(diary.date).toLocaleString()}</p>
-                        <p>${diary.entry}</p>
-                        ${diary.image ? `<img src="${diary.image}" alt="日記圖片" style="max-width:100px;"/>` : ''}
-                    `;
+                            <p>${new Date(diary.date).toLocaleString()}</p>
+                            <p>${diary.title || '無標題'}</p>
+                            <p>${diary.content || '無內容'}</p>
+                            ${diary.image ? `<img src="/${diary.image}" alt="日記圖片" style="max-width:200px;">` : ''}
+                        `;
                     diaryList.appendChild(listItem);
                 });
             } catch (error) {
@@ -228,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Diary form element is missing.');
     }
 });
+
 
 // 當用戶提交註冊表單時
 document.getElementById('registerForm')?.addEventListener('submit', async (e) => {

@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify, render_template
 from werkzeug.utils import secure_filename
 from PIL import Image
-from classification_model.Google_gemini import classify_image_with_retry  # 使用修改後的分類函數
+from classification_model.Google_gemini import classification_with_retry
+  # 使用修改後的分類函數
 
 app = Flask(__name__)
 
@@ -64,6 +65,38 @@ def subscribe():
         return jsonify({'message': 'Subscription successful'}), 200
     else:
         return jsonify({'error': 'Email is required'}), 400
+
+from pymongo import MongoClient # type: ignore
+client = MongoClient('mongodb://localhost:27017/')
+db = client['leaderboard_db']
+users_collection = db['users']
+
+result = users_collection.update_many({}, {'$set': {'points': 0}})
+print(f'Matched {result.matched_count}, Modified {result.modified_count}')
+
+@app.route('/leaderboard', methods=['GET'])
+def get_leaderboard():
+    # 日誌輸出更新操作前的狀態
+    users_before_update = list(users_collection.find())
+    print(f'Before update: {users_before_update}')
+    
+    # 重置所有使用者的積分為 0
+    result = users_collection.update_many({}, {'$set': {'points': 0}})
+    print(f'Matched {result.matched_count}, Modified {result.modified_count}')
+    
+    # 確認更新後的結果
+    users_after_update = list(users_collection.find())
+    print(f'After update: {users_after_update}')
+    
+    # 從 MongoDB 中獲取更新後的排行榜，按分數排序
+    leaderboard = list(users_collection.find().sort("points", -1))
+    
+    # 準備返回的資料
+    leaderboard_data = [{'username': user['username'], 'points': user['points']} for user in leaderboard]
+    
+    return jsonify(leaderboard_data)
+
+
 
 
 if __name__ == '__main__':
