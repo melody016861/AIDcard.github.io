@@ -16,6 +16,28 @@
 @import url(css/owl.carousel.css);
 @import url(css/font-awesome.min.css);
 
+/* style.css */
+#lotteryButton {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#lotteryButton:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+#lotteryButton:active {
+  background-color: #3e8e41;
+  transform: scale(1.02);
+}
+
 /* Styles for the lottery wheel */
 .lottery-page .wheel {
   position: relative;

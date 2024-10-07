@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from PIL import Image
+import os  # 需要加入這個模組
 from classification_model.Google_gemini import classification_with_retry
-  # 使用修改後的分類函數
+from pymongo import MongoClient  # type: ignore
 
 app = Flask(__name__)
 
@@ -96,7 +97,37 @@ def get_leaderboard():
     
     return jsonify(leaderboard_data)
 
+# 設定檔案上傳的資料夾路徑
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 設定最大上傳檔案大小 16MB
 
+# 如果 'uploads' 資料夾不存在，則創建
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
+# 處理檔案上傳的路由
+@app.route('/api/recycling-diary', methods=['POST'])
+def upload_diary():
+    if 'image' not in request.files:
+        return jsonify({'error': '沒有找到圖片檔案'}), 400
+    
+    file = request.files['image']
+    
+    if file.filename == '':
+        return jsonify({'error': '沒有選擇檔案'}), 400
+
+    # 確保檔案名稱是安全的，並儲存在指定目錄中
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    
+    # 返回成功的回應，包括圖片的 URL
+    file_url = url_for('uploaded_file', filename=filename)
+    return jsonify({'message': '檔案上傳成功', 'file_url': file_url})
+
+# 提供靜態資源的路由，用來顯示上傳的圖片
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 if __name__ == '__main__':

@@ -16,6 +16,72 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            /* 根據你的需求調整這個高度 */
+            text-align: center;
+            margin: auto;
+        }
+
+        #leaderboard {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #lotteryButton {
+            background-color: #FFD9EC;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        #lotteryButton:hover {
+            background-color: #FFD2D2;
+        }
+
+        #lotteryResult {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        #membershipStatus {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -149,8 +215,6 @@
                                             <li id="quizNav"><a href="quiz.html">測試一下!</a></li>
                                             <li id="quizAnalyticsNav"><a href="quizAnalytics.html">測驗分析</a>
                                             </li>
-                                            <li id="LotteryNav"><a href="lottery.html">抽獎</a></li>
-                                            <li><a href="page_2.html">page 2</a></li>
                                             <li id="recycling_diaryNav"><a href="recycling_diary.html">回收日記</a></li>
                                             <li id="arduinoNav"><a href="arduino.html">Arduino</a></li>
                                             <li id="educationNav"><a href="education.html">教育宣導</a></li>
@@ -222,7 +286,7 @@
                                         </div>
                                     </li> -->
                                     <li><a href="contact.html">聯繫我們</a></li>
-                                    <li id="feedbackNav"><a href="feedback.html">顧客反饋</a></li>
+                                    <li><a href="feedback.html">顧客反饋</a></li>
                                 </ul>
 
                                 <!-- Search Form  -->
@@ -240,8 +304,54 @@
                 </div>
             </div>
         </div>
-        <h2>積分排行榜</h2>
-        <ul id="leaderboard"></ul>
+
+        <div class="content-wrapper">
+            <h2>積分排行榜</h2>
+            <ul id="leaderboard"></ul>
+
+            <!-- 顯示會員等級 -->
+            <p id="membershipStatus"></p>
+
+            <!-- 抽獎按鈕和結果顯示區域 -->
+            <button id="lotteryButton">抽獎</button>
+            <p id="lotteryResult"></p>
+
+            <!-- 會員等級和抽獎制度說明 -->
+            <h3>會員等級和抽獎制度</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>會員等級</th>
+                        <th>積分區間</th>
+                        <th>可抽獎品</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>黃金會員</td>
+                        <td>1000 分以上</td>
+                        <td>行動電源, 高級耳機, 旅行包</td>
+                    </tr>
+                    <tr>
+                        <td>白銀會員</td>
+                        <td>500 - 999 分</td>
+                        <td>環保水壺, 無線滑鼠, 筆記本</td>
+                    </tr>
+                    <tr>
+                        <td>銅牌會員</td>
+                        <td>100 - 499 分</td>
+                        <td>筆, 便條紙, 小型文具</td>
+                    </tr>
+                    <tr>
+                        <td>普通會員</td>
+                        <td>0 - 99 分</td>
+                        <td>積分不足，無法參與抽獎</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
     </header>
     <!-- ##### Header Area End ##### -->
 
@@ -250,12 +360,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-
                     <!-- Footer Nav Area -->
                     <div class="classy-nav-container breakpoint-off">
                         <!-- Classy Menu -->
                         <nav class="classy-navbar justify-content-center">
-
                             <!-- Navbar Toggler -->
                             <div class="classy-navbar-toggler">
                                 <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -266,43 +374,45 @@
 
                                 <!-- close btn -->
                                 <div class="classycloseIcon">
-                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span>
-                                    </div>
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
 
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">education</a></li>
-                                        <li><a href="#">NCCUTrash</a></li>
-                                        <li><a href="#">Image Predict</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="index_new.html">Home</a></li>
+                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="education.html">education</a></li>
+                                        <li><a href="Gemini_connect.html">Gemini Image Predict</a></li>
+                                        <li><a href="image_predict.html">Image Predict</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
                             </div>
                         </nav>
                     </div>
-
-                    <!-- Footer Social Area -->
-                    <div class="footer-social-area mt-30">
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i
-                                class="fa fa-pinterest" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i
-                                class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"
-                                aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i
-                                class="fa fa-dribbble" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance"
-                                aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i
-                                class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Footer Social Area -->
+        <div class="footer-social-area mt-30">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"
+                    aria-hidden="true"></i></a>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"
+                    aria-hidden="true"></i></a>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"
+                    aria-hidden="true"></i></a>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble"
+                    aria-hidden="true"></i></a>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance"
+                    aria-hidden="true"></i></a>
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"
+                    aria-hidden="true"></i></a>
+        </div>
+        </div>
+        </div>
         </div>
 
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -330,30 +440,83 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
+            let currentUser = '';  // 這裡假設從 localStorage 獲取使用者名稱
+        
             try {
+                // 假設登入後使用者名稱已被儲存於 localStorage
+                currentUser = localStorage.getItem('username') || '您';
+        
                 const response = await fetch('/leaderboard');
                 if (!response.ok) {
                     throw new Error('Failed to fetch leaderboard');
                 }
-                
+        
                 const leaderboard = await response.json();
                 const leaderboardList = document.getElementById('leaderboard');
-                
+                const membershipStatus = document.getElementById('membershipStatus');
+        
                 // 清除現有的排行榜
                 leaderboardList.innerHTML = '';
-                
+        
                 // 使用新資料填充排行榜
                 leaderboard.forEach(user => {
                     const listItem = document.createElement('li');
                     listItem.textContent = `${user.username} - ${user.points} 分`;
                     leaderboardList.appendChild(listItem);
                 });
+        
+                // 根據積分顯示會員等級
+                const user = leaderboard[0]; // 假設使用者是第一個人 (可以根據需求更改為登錄的使用者)
+                let membership = '普通會員'; // 預設為普通會員
+        
+                if (user.points >= 1000) {
+                    membership = '黃金會員';
+                } else if (user.points >= 500) {
+                    membership = '白銀會員';
+                } else if (user.points >= 100) {
+                    membership = '銅牌會員';
+                }
+        
+                // 顯示會員身份
+                membershipStatus.textContent = `${currentUser}的會員等級為: ${membership}`;
+        
+                // 設定抽獎按鈕事件
+                const lotteryButton = document.getElementById('lotteryButton');
+                const lotteryResult = document.getElementById('lotteryResult');
+        
+                lotteryButton.addEventListener('click', function () {
+                    if (user.points >= 1000) {
+                        lotteryResult.textContent = drawLottery(1000);
+                    } else if (user.points >= 500) {
+                        lotteryResult.textContent = drawLottery(500);
+                    } else if (user.points >= 100) {
+                        lotteryResult.textContent = drawLottery(100);
+                    } else {
+                        lotteryResult.textContent = `${currentUser} 積分不足，無法參與抽獎！`;
+                    }
+                });
+        
+                function drawLottery(points) {
+                    let prizes;
+        
+                    if (points >= 1000) {
+                        prizes = ['行動電源', '高級耳機', '旅行包'];
+                    } else if (points >= 500) {
+                        prizes = ['環保水壺', '無線滑鼠', '筆記本'];
+                    } else if (points >= 100) {
+                        prizes = ['筆', '便條紙', '小型文具'];
+                    }
+        
+                    const prizeIndex = Math.floor(Math.random() * prizes.length);
+                    return `恭喜 ${currentUser} 獲得了 ${prizes[prizeIndex]}！`;
+                }
+        
             } catch (error) {
                 console.error('Error loading leaderboard:', error);
                 alert('載入排行榜失敗。請稍後再試。');
             }
-        });
-        
+        });        
+
     </script>
 
 </body>

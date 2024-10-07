@@ -85,42 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
         loadQuiz();
     }
 
-    // 抽獎功能代碼
-    const spinButton = document.getElementById('spinButton');
-    const wheel = document.getElementById('wheel');
-    let currentRotation = 0;
-
-    if (spinButton && wheel) {
-        spinButton.addEventListener('click', function () {
-            const segments = [
-                'Gold Watch',
-                'Gold Necklace',
-                'Silver Ring',
-                'Silver Bracelet',
-                'Bronze Medal',
-                'Bronze Keychain',
-                'Participation Certificate',
-                'Pen'
-            ];
-
-            const spinDeg = Math.floor(Math.random() * 360) + 1080;
-            currentRotation += spinDeg;
-            wheel.style.transition = 'transform 5s ease-out';
-            wheel.style.transform = `rotate(${currentRotation}deg)`;
-
-            setTimeout(() => {
-                const normalizedDeg = currentRotation % 360;
-                const segmentAngle = 360 / segments.length;
-                const winningIndex = Math.floor(normalizedDeg / segmentAngle);
-                const selectedPrize = segments[segments.length - winningIndex - 1];
-
-                document.getElementById('lotteryResult').innerText = `恭喜你獲得了 ${selectedPrize}！`;
-            }, 5000);
-        });
-    } else {
-        console.error('Spin button or wheel element is missing.');
-    }
-
     // 回收日記功能代碼
     const diaryForm = document.getElementById('diaryForm');
     if (diaryForm) {
@@ -392,8 +356,37 @@ async function loadQuiz() {
             }
         });
 
+
     } catch (error) {
         console.error('Error fetching quiz:', error);
         alert('無法加載測驗，請檢查網絡連接或聯繫管理員。');
     }
 }
+
+document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // 防止表單默認提交行為
+
+    const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value
+    };
+
+    fetch('http://localhost:5000/send-message', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("訊息已成功提交！");
+        document.getElementById("contactForm").reset(); // 清空表單
+    })
+    .catch(error => {
+        console.error('錯誤:', error);
+        alert("伺服器錯誤，無法保存訊息。");
+    });
+});

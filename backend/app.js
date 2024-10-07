@@ -34,7 +34,7 @@ const port = new SerialPort({ path: 'COM3', baudRate: 9600 }, (err) => {
 });
 
 // 錯誤事件監聽
-port.on('error', function(err) {
+port.on('error', function (err) {
     console.log('Error: ', err.message);
 });
 
@@ -43,29 +43,30 @@ const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
-  console.log('A user connected');
+    console.log('A user connected');
 
-  socket.on('turnOnLight1', () => {
-    port.write('1');
-    setTimeout(() => {
-      port.write('0');  // 3秒後關燈1
-    }, 3000);
-  });
+    socket.on('turnOnLight1', () => {
+        port.write('1');
+        setTimeout(() => {
+            port.write('0');  // 3秒後關燈1
+        }, 3000);
+    });
 
-  socket.on('turnOnLight2', () => {
-    port.write('3');
-    setTimeout(() => {
-      port.write('2');  // 3秒後關燈2
-    }, 3000);
-  });
+    socket.on('turnOnLight2', () => {
+        port.write('3');
+        setTimeout(() => {
+            port.write('2');  // 3秒後關燈2
+        }, 3000);
+    });
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
-  });
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 });
 
 // 解析 JSON 請求
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // 使用路由
 console.log('Before mounting achievements route');
 app.use('/api/achievements', achievementRoutes);
@@ -83,11 +84,11 @@ console.log("Quiz routes are set up");
 
 
 // 設定靜態文件路徑，指向 'frontend/src' 目錄
-app.use(express.static(path.join(__dirname, '../frontend/src'))); 
+app.use(express.static(path.join(__dirname, '../frontend/src')));
 
 // 處理根路徑的 GET 請求
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/src', 'index_new.html')); 
+    res.sendFile(path.join(__dirname, '../frontend/src', 'index_new.html'));
 });
 
 // 資料庫連接
@@ -112,7 +113,7 @@ app.post('/register', async (req, res) => {
 
         await user.save();
 
-        const payload = { user: { id: user.id }};
+        const payload = { user: { id: user.id } };
         const token = jwt.sign(payload, 'yourSecretKey', { expiresIn: 360000 });
 
         res.json({ token });
@@ -137,7 +138,7 @@ app.post('/login', async (req, res) => {
             return res.status(400).json({ msg: 'Invalid Credentials' });
         }
 
-        const payload = { user: { id: user.id }};
+        const payload = { user: { id: user.id } };
         const token = jwt.sign(payload, 'yourSecretKey', { expiresIn: 360000 });
 
         res.json({ token });
@@ -150,7 +151,7 @@ app.post('/login', async (req, res) => {
 // 添加測驗完成的路由，假設測驗完成後獲得10分
 app.post('/completeQuiz', async (req, res) => {
     const { userId } = req.body;
-    
+
     try {
         let user = await User.findById(userId);
         if (user) {
@@ -179,7 +180,7 @@ app.get('/leaderboard', async (req, res) => {
 
 app.post('/completeDailyChallenge', async (req, res) => {
     const { userId } = req.body;
-    
+
     try {
         let user = await User.findById(userId);
         if (user && !user.dailyChallenge) {
@@ -227,7 +228,7 @@ app.post('/unlockAchievement', async (req, res) => {
 
 app.post('/updateProfile', async (req, res) => {
     const { userId, profileData } = req.body;
-    
+
     try {
         let user = await User.findById(userId);
         if (user) {
@@ -269,8 +270,6 @@ function authenticateToken(req, res, next) {
     }
 }
 
-const multer = require('multer');
-
 // 配置 multer 用於圖片上傳
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -291,7 +290,7 @@ app.post('/api/recycling-diary', authMiddleware, async (req, res) => {
         console.log("Request body:", req.body); // 添加這一行來檢查請求體
         const { title, content, date } = req.body;
         const userId = req.user.id;
-        
+
         const newDiaryEntry = new RecyclingDiary({
             userId,
             title,
@@ -368,7 +367,7 @@ app.delete('/api/recycling-diary/:id', authMiddleware, async (req, res) => {
 app.post('/classify_image', (req, res) => {
     // 假設 req.body 包含圖像資料
     const imageData = req.body.image;
-    
+
     // 調用Google Gemini分類功能，這裡假設已經在某個模組中定義該功能
     googleGemini.classifyImage(imageData)
         .then(result => {
@@ -379,6 +378,38 @@ app.post('/classify_image', (req, res) => {
             res.status(500).json({ error: 'Image classification failed' });
         });
 });
+
+const Contact = require('./models/contactModel');
+
+// 保存表單資料到 MongoDB 的路由
+app.post('/send-message', async (req, res) => {
+    try {
+        console.log('Received request body:', req.body);  // 添加日誌來檢查請求體
+
+        const { name, email, subject, message } = req.body;
+
+        const newContact = new Contact({
+            name,
+            email,
+            subject,
+            message
+        });
+
+        await newContact.save(); // 保存到 MongoDB
+
+        res.status(200).json({ message: '訊息已成功保存' });
+    } catch (err) {
+        console.error('Error saving contact:', err.message);
+        res.status(500).json({ error: '無法保存訊息，請稍後再試' });
+    }
+});
+
+// app.listen(3000, () => {
+//     console.log('Server is running on port 3000');
+// });
+
+const subscribeRoutes = require('./subscribe'); // 根據實際路徑調整
+app.use('/api', subscribeRoutes);
 
 // 啟動伺服器
 const PORT = process.env.PORT || 5000;
