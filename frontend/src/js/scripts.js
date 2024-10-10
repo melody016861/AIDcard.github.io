@@ -363,30 +363,30 @@ async function loadQuiz() {
     }
 }
 
-document.getElementById("contactForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // 防止表單默認提交行為
+document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // 防止表單的預設提交行為
 
-    const formData = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value
-    };
+    const email = document.getElementById("subscribesForm").value;
 
-    fetch('http://localhost:5000/send-message', {
+    fetch('http://localhost:5000/api/subscribe', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ email })
     })
-    .then(response => response.json())
-    .then(data => {
-        alert("訊息已成功提交！");
-        document.getElementById("contactForm").reset(); // 清空表單
-    })
-    .catch(error => {
-        console.error('錯誤:', error);
-        alert("伺服器錯誤，無法保存訊息。");
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                document.getElementById("subscribeForm").reset(); // 成功後清空表單
+            } else {
+                alert(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('訂閱錯誤:', error);
+            alert('訂閱失敗，請稍後再試。');
+        });
 });
+

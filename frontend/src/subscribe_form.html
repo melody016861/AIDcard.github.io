@@ -36,11 +36,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                     <div class="modal-body">
-                        <h5 class="title">Subscribe to my newsletter</h5>
-                        <form id="newsletterForm" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here"
-                                required>
-                            <button type="submit" class="btn original-btn">Subscribe</button>
+                        <h5 class="title">訂閱我們的電子報</h5>
+                        <form id="subscribeForm" method="post" action="http://localhost:5000/api/subscribe">
+                            <input type="email" name="email" id="subscribesForm" placeholder="請輸入您的電子郵件" required>
+                            <button type="submit" class="btn original-btn"
+                                style="background-color: black; color: white; border: none; padding: 10px 20px; border-radius: 5px;">訂閱</button>
                         </form>
                     </div>
                 </div>
@@ -109,11 +109,7 @@
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between">
 
-                        <!-- Subscribe btn -->
-                        <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal"
-                                data-target="#subsModal">Subscribe</a>
-                        </div>
+
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -158,6 +154,7 @@
                                             <li><a href="coming-soon.html">Coming Soon</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="subscribe_form.html">訂閱我們</a></li>
                                     <li><a href="about-us.html">關於我們</a></li>
                                     <li><a href="contact.html">聯繫我們</a></li>
                                     <li><a href="feedback.html">顧客反饋</a></li>
@@ -182,9 +179,10 @@
     <!-- ##### Header Area End ##### -->
 
     <main>
-        <form id="subscribeForm" method="post">
+        <form id="subscribeForm" method="post" action="http://localhost:5000/api/subscribe">
             <input type="email" name="email" id="subscribesForm" placeholder="請輸入您的電子郵件" required>
-            <button type="submit" class="btn original-btn">訂閱</button>
+            <button type="submit" class="btn original-btn"
+                style="background-color: black; color: white; border: none; padding: 10px 20px; border-radius: 5px;">訂閱</button>
         </form>
     </main>
 
@@ -296,6 +294,7 @@
                     alert('訂閱失敗，請稍後再試。');
                 });
         });
+
     </script>
 
 </body>

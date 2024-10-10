@@ -41,9 +41,12 @@
                             aria-hidden="true">&times;</span></button>
                     <div class="modal-body">
                         <h5 class="title">Subscribe to my newsletter</h5>
-                        <form action="#" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
-                            <button type="submit" class="btn original-btn">Subscribe</button>
+                        <form id="subscribeForm" method="post" action="http://localhost:5000/api/subscribe">
+                            <input type="email" name="email" id="subscribesForm" placeholder="請輸入您的電子郵件" required>
+                            <button type="submit" class="btn original-btn"
+                                style="background-color: black; color: white; border: none; padding: 10px 20px; border-radius: 5px;">
+                                訂閱
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -186,6 +189,7 @@
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
                                     </li> -->
+                                    <li><a href="subscribe_form.html">訂閱我們</a></li>
                                     <li><a href="about-us.html">關於我們</a></li>
                                     <!-- <li><a href="#">Megamenu</a>
                                         <div class="megamenu">
@@ -264,45 +268,45 @@
 
         <script>
 
-        document.getElementById('uploadButton').addEventListener('click', function() {
-            const fileInput = document.getElementById('uploadImageInput');
-            const file = fileInput.files[0];
+            document.getElementById('uploadButton').addEventListener('click', function () {
+                const fileInput = document.getElementById('uploadImageInput');
+                const file = fileInput.files[0];
 
-            if (!file) {
-                document.getElementById('statusMessage').innerText = '請選擇一張圖片';
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append('image', file);
-
-            fetch('http://127.0.0.1:8080/post_from_upload', { // 替換為你的伺服器端點
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('上傳失敗');
+                if (!file) {
+                    document.getElementById('statusMessage').innerText = '請選擇一張圖片';
+                    return;
                 }
-            })
-            .then(data => {
-                // 顯示圖片
-                const imgUrl = "data:image/jpeg;base64," + data.image_data;
-                document.getElementById('uploadedImage').src = imgUrl;
 
-                // 顯示分類結果
-                const classificationText = `Class Name: ${data.class_name}, Class Number: ${data.class_num}`;
-                document.getElementById('classificationResult').innerText = classificationText;
+                const formData = new FormData();
+                formData.append('image', file);
 
-                document.getElementById('statusMessage').innerText = '圖片成功上傳並分類';
-            })
-            .catch(error => {
-                console.log('Error:', error);
-                document.getElementById('statusMessage').innerText = 'Error: ' + error.message;
+                fetch('http://127.0.0.1:8080/post_from_upload', { // 替換為你的伺服器端點
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('上傳失敗');
+                        }
+                    })
+                    .then(data => {
+                        // 顯示圖片
+                        const imgUrl = "data:image/jpeg;base64," + data.image_data;
+                        document.getElementById('uploadedImage').src = imgUrl;
+
+                        // 顯示分類結果
+                        const classificationText = `Class Name: ${data.class_name}, Class Number: ${data.class_num}`;
+                        document.getElementById('classificationResult').innerText = classificationText;
+
+                        document.getElementById('statusMessage').innerText = '圖片成功上傳並分類';
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                        document.getElementById('statusMessage').innerText = 'Error: ' + error.message;
+                    });
             });
-        });
 
 
 
@@ -429,6 +433,35 @@
     <script src="js/active.js"></script>
 
     <script src="js/scripts.js"></script>
+
+    <script>
+        document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // 防止表單的預設提交行為
+
+            const email = document.getElementById("subscribesForm").value;
+
+            fetch('http://localhost:5000/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert('訂閱成功！');
+                        document.getElementById("subscribeForm").reset(); // 成功後清空表單
+                    } else {
+                        alert('訂閱失敗: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('訂閱錯誤:', error);
+                    alert('訂閱失敗，請稍後再試。');
+                });
+        });
+    </script>
 
 </body>
 

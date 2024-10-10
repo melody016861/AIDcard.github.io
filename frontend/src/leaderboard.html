@@ -103,9 +103,12 @@
                             aria-hidden="true">&times;</span></button>
                     <div class="modal-body">
                         <h5 class="title">Subscribe to my newsletter</h5>
-                        <form action="#" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
-                            <button type="submit" class="btn original-btn">Subscribe</button>
+                        <form id="subscribeForm" method="post" action="http://localhost:5000/api/subscribe">
+                            <input type="email" name="email" id="subscribesForm" placeholder="請輸入您的電子郵件" required>
+                            <button type="submit" class="btn original-btn"
+                                style="background-color: black; color: white; border: none; padding: 10px 20px; border-radius: 5px;">
+                                訂閱
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -223,68 +226,8 @@
                                             <li><a href="coming-soon.html">Coming Soon</a></li>
                                         </ul>
                                     </li>
-                                    <!-- <li><a href="#">Catagory</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                            <li><a href="#">Catagory 3</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                    <li><a href="#">Catagory 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                            <li><a href="#">Catagory 1</a></li>
-                                        </ul>
-                                    </li> -->
+                                    <li><a href="subscribe_form.html">訂閱我們</a></li>
                                     <li><a href="about-us.html">關於我們</a></li>
-                                    <!-- <li><a href="#">Megamenu</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 1</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 2</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 3</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li class="title">Headline 4</li>
-                                                <li><a href="#">Mega Menu Item 1</a></li>
-                                                <li><a href="#">Mega Menu Item 2</a></li>
-                                                <li><a href="#">Mega Menu Item 3</a></li>
-                                                <li><a href="#">Mega Menu Item 4</a></li>
-                                                <li><a href="#">Mega Menu Item 5</a></li>
-                                            </ul>
-                                        </div>
-                                    </li> -->
                                     <li><a href="contact.html">聯繫我們</a></li>
                                     <li><a href="feedback.html">顧客反饋</a></li>
                                 </ul>
@@ -441,34 +384,34 @@
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
             let currentUser = '';  // 這裡假設從 localStorage 獲取使用者名稱
-        
+
             try {
                 // 假設登入後使用者名稱已被儲存於 localStorage
                 currentUser = localStorage.getItem('username') || '您';
-        
+
                 const response = await fetch('/leaderboard');
                 if (!response.ok) {
                     throw new Error('Failed to fetch leaderboard');
                 }
-        
+
                 const leaderboard = await response.json();
                 const leaderboardList = document.getElementById('leaderboard');
                 const membershipStatus = document.getElementById('membershipStatus');
-        
+
                 // 清除現有的排行榜
                 leaderboardList.innerHTML = '';
-        
+
                 // 使用新資料填充排行榜
                 leaderboard.forEach(user => {
                     const listItem = document.createElement('li');
                     listItem.textContent = `${user.username} - ${user.points} 分`;
                     leaderboardList.appendChild(listItem);
                 });
-        
+
                 // 根據積分顯示會員等級
                 const user = leaderboard[0]; // 假設使用者是第一個人 (可以根據需求更改為登錄的使用者)
                 let membership = '普通會員'; // 預設為普通會員
-        
+
                 if (user.points >= 1000) {
                     membership = '黃金會員';
                 } else if (user.points >= 500) {
@@ -476,14 +419,14 @@
                 } else if (user.points >= 100) {
                     membership = '銅牌會員';
                 }
-        
+
                 // 顯示會員身份
                 membershipStatus.textContent = `${currentUser}的會員等級為: ${membership}`;
-        
+
                 // 設定抽獎按鈕事件
                 const lotteryButton = document.getElementById('lotteryButton');
                 const lotteryResult = document.getElementById('lotteryResult');
-        
+
                 lotteryButton.addEventListener('click', function () {
                     if (user.points >= 1000) {
                         lotteryResult.textContent = drawLottery(1000);
@@ -495,10 +438,10 @@
                         lotteryResult.textContent = `${currentUser} 積分不足，無法參與抽獎！`;
                     }
                 });
-        
+
                 function drawLottery(points) {
                     let prizes;
-        
+
                     if (points >= 1000) {
                         prizes = ['行動電源', '高級耳機', '旅行包'];
                     } else if (points >= 500) {
@@ -506,17 +449,46 @@
                     } else if (points >= 100) {
                         prizes = ['筆', '便條紙', '小型文具'];
                     }
-        
+
                     const prizeIndex = Math.floor(Math.random() * prizes.length);
                     return `恭喜 ${currentUser} 獲得了 ${prizes[prizeIndex]}！`;
                 }
-        
+
             } catch (error) {
                 console.error('Error loading leaderboard:', error);
                 alert('載入排行榜失敗。請稍後再試。');
             }
-        });        
+        });
 
+    </script>
+
+    <script>
+        document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // 防止表單的預設提交行為
+
+            const email = document.getElementById("subscribesForm").value;
+
+            fetch('http://localhost:5000/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert('訂閱成功！');
+                        document.getElementById("subscribeForm").reset(); // 成功後清空表單
+                    } else {
+                        alert('訂閱失敗: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('訂閱錯誤:', error);
+                    alert('訂閱失敗，請稍後再試。');
+                });
+        });
     </script>
 
 </body>

@@ -16,6 +16,20 @@
 @import url(css/owl.carousel.css);
 @import url(css/font-awesome.min.css);
 
+.btn.original-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex; /* 使用 flexbox 來實現對齊 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  height: 50px; /* 設定高度以便控制按鈕的大小 */
+  text-align: center;
+}
+
 /* style.css */
 #lotteryButton {
   padding: 10px 20px;

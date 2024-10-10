@@ -36,9 +36,12 @@
                             aria-hidden="true">&times;</span></button>
                     <div class="modal-body">
                         <h5 class="title">Subscribe to my newsletter</h5>
-                        <form action="#" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
-                            <button type="submit" class="btn original-btn">Subscribe</button>
+                        <form id="subscribeForm" method="post" action="http://localhost:5000/api/subscribe">
+                            <input type="email" name="email" id="subscribesForm" placeholder="請輸入您的電子郵件" required>
+                            <button type="submit" class="btn original-btn"
+                                style="background-color: black; color: white; border: none; padding: 10px 20px; border-radius: 5px;">
+                                訂閱
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -181,6 +184,7 @@
                                             <li><a href="#">Catagory 1</a></li>
                                         </ul>
                                     </li> -->
+                                    <li><a href="subscribe_form.html">訂閱我們</a></li>
                                     <li><a href="about-us.html">關於我們</a></li>
                                     <!-- <li><a href="#">Megamenu</a>
                                         <div class="megamenu">
@@ -343,5 +347,35 @@
 
     <script src="js/scripts.js"></script>
 
+    <script>
+        document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // 防止表單的預設提交行為
+
+            const email = document.getElementById("subscribesForm").value;
+
+            fetch('http://localhost:5000/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert('訂閱成功！');
+                        document.getElementById("subscribeForm").reset(); // 成功後清空表單
+                    } else {
+                        alert('訂閱失敗: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('訂閱錯誤:', error);
+                    alert('訂閱失敗，請稍後再試。');
+                });
+        });
+    </script>
+
 </body>
+
 </html>

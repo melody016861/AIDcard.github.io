@@ -408,8 +408,12 @@ app.post('/send-message', async (req, res) => {
 //     console.log('Server is running on port 3000');
 // });
 
-const subscribeRoutes = require('./subscribe'); // 根據實際路徑調整
-app.use('/api', subscribeRoutes);
+const cors = require('cors');
+app.use(cors());  // 允許跨域訪問
+
+const subscribeRoutes = require('./routes/subscribe'); // 確認你正確引入路由
+app.use('/api', subscribeRoutes);  // 確保路由掛載在 '/api' 下
+
 
 // 啟動伺服器
 const PORT = process.env.PORT || 5000;
