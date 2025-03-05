@@ -1,3 +1,6 @@
+# 專案簡報_Final version
+https://www.canva.com/design/DAGS9i3x8ME/LNPu3RGFPaz59V7U_BgoaQ/edit
+
 ## 上傳專案資料夾的方式
 ```
 1. cd path/to/your/folder
