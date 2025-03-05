@@ -1,5 +1,5 @@
 # 專案簡報_Final version
-https://www.canva.com/design/DAGS9i3x8ME/LNPu3RGFPaz59V7U_BgoaQ/edit
+https://drive.google.com/file/d/1bz1SydiyJdekOHt8TKKNITF8hQs9pxh5/view?usp=sharing
 
 ## 上傳專案資料夾的方式
 ```
